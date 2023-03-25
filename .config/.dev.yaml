@@ -1,2 +1,10 @@
 TEST_VALUE:
   name: cookie
+
+FEISHU_CONFIG:
+  FEISHU_URL: https://open.feishu.cn/open-apis
+  FEISHU_API_HOST: https://open.feishu.cn
+  FEISHU_APP_ID: cli_a48efb12a93ad00d
+  FEISHU_APP_SECRET: GkkJ4g5VXHIAVWV9yrVSpdLPZi3tkTTR
+
+APP_TOKEN_CACHE_KEY: APP_TOKEN_CACHE_KEY

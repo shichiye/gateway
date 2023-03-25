@@ -1,4 +1,4 @@
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType, VERSION_NEUTRAL } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import {
   FastifyAdapter,
@@ -13,7 +13,7 @@ import { generateDocument } from './doc';
 declare const module: any;
 
 async function bootstrap() {
-  
+
   const app = await NestFactory.create<NestFastifyApplication>(
     AppModule,
     new FastifyAdapter()
@@ -24,9 +24,12 @@ async function bootstrap() {
 
   // 接口版本化管理
   app.enableVersioning({
-    defaultVersion: '1',
+    defaultVersion: [VERSION_NEUTRAL, '1', '2'],
     type: VersioningType.URI
   })
+
+  app.useGlobalPipes(new ValidationPipe({
+  }));
 
   generateDocument(app)
 
