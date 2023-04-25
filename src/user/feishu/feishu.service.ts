@@ -24,7 +24,7 @@ export class FeishuService {
       const response = await getAppToken()
       if (response.code === 0) {
         appToken = response.app_access_token
-        this.catcheManager.set(this.APP_TOKEN_CACHE_KEY, appToken, response.expire - 60)
+        this.catcheManager.set(this.APP_TOKEN_CACHE_KEY, appToken, (response.expire - 60) * 1000)
       } else {
         throw new BusinessException('获取飞书应用token失败')
       }
