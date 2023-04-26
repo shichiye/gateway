@@ -1,13 +1,18 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
-import { ArgumentsHost, Catch, ExceptionFilter, HttpStatus, ServiceUnavailableException } from "@nestjs/common";
-
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpStatus,
+  ServiceUnavailableException
+} from '@nestjs/common'
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   catch(exception: Error, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse<FastifyReply>();
-    const request = ctx.getRequest<FastifyRequest>();
+    const ctx = host.switchToHttp()
+    const response = ctx.getResponse<FastifyReply>()
+    const request = ctx.getRequest<FastifyRequest>()
 
     request.log.error(exception)
 
@@ -19,5 +24,4 @@ export class AllExceptionsFilter implements ExceptionFilter {
       message: new ServiceUnavailableException().getResponse()
     })
   }
-
 }

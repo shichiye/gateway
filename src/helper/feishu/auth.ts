@@ -1,13 +1,12 @@
-import { methodV } from "@/utils/request";
-import { APP_ID, APP_SERECT } from "./const";
-
+import { methodV } from '@/utils/request'
+import { APP_ID, APP_SERECT } from './const'
 
 export type GetAppTokenRes = {
   code: number;
   msg: string;
   app_access_token: string;
   expire: number;
-}
+};
 
 export const getAppToken = async () => {
   const { data } = await methodV({
@@ -15,10 +14,8 @@ export const getAppToken = async () => {
     method: 'POST',
     params: {
       app_id: APP_ID,
-      app_secret: APP_SERECT,
-    },
+      app_secret: APP_SERECT
+    }
   })
   return data as GetAppTokenRes
 }
-
-

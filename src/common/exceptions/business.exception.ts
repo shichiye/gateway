@@ -1,14 +1,12 @@
-import { HttpException, HttpStatus } from "@nestjs/common";
-import { BUSINESS_ERROR_CODES } from "./business.error.codes";
-
+import { HttpException, HttpStatus } from '@nestjs/common'
+import { BUSINESS_ERROR_CODES } from './business.error.codes'
 
 type BusinessError = {
   code: number;
   message: string;
-}
+};
 
 export class BusinessException extends HttpException {
-
   constructor(err: BusinessError | string) {
     if (typeof err === 'string') {
       err = {

@@ -1,10 +1,10 @@
-import { Entity, Column, UpdateDateColumn, ObjectIdColumn } from 'typeorm';
+import { Entity, Column, ObjectIdColumn } from 'typeorm'
 
 @Entity()
 export class User {
   @ObjectIdColumn()
-  id?: number;
+  id?: number
 
   @Column({ default: null })
-  name: string;
+  name: string
 }

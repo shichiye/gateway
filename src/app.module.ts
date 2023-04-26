@@ -1,11 +1,11 @@
-import { CacheModule, Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-import { getConfig } from './utils';
-import { redisStore } from 'cache-manager-redis-store';
-import { RedisClientOptions } from 'redis';
+import { CacheModule, Module } from '@nestjs/common'
+import { ConfigModule } from '@nestjs/config'
+import { AppController } from './app.controller'
+import { AppService } from './app.service'
+import { UserModule } from './user/user.module'
+import { getConfig } from './utils'
+import { redisStore } from 'cache-manager-redis-store'
+import { RedisClientOptions } from 'redis'
 
 const redisConfig = getConfig('REDIS_CONFIG')
 
@@ -35,6 +35,6 @@ const redisStoreConfig: RedisClientOptions = {
     UserModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService]
 })
-export class AppModule { }
+export class AppModule {}

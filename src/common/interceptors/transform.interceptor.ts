@@ -1,5 +1,10 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
-import { map, Observable } from "rxjs";
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor
+} from '@nestjs/common'
+import { map, Observable } from 'rxjs'
 
 interface Response<T> {
   data: T;
@@ -14,7 +19,6 @@ export class TransformInterceptor<T>
     next: CallHandler
   ): Observable<Response<T>> {
     return next.handle().pipe(
-
       map((data) => ({
         data,
         status: 0,
@@ -22,7 +26,6 @@ export class TransformInterceptor<T>
         message: 'success',
         success: true
       }))
-    );
+    )
   }
-
 }

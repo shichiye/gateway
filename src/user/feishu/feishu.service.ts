@@ -1,10 +1,9 @@
-import { CACHE_MANAGER, Inject, Injectable } from "@nestjs/common";
-import { Cache } from "cache-manager";
-import { ConfigService } from "@nestjs/config";
-import { getAppToken } from "@/helper/feishu/auth";
-import { BusinessException } from "@/common/exceptions/business.exception";
-import { messages } from "@/helper/feishu/message";
-
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common'
+import { Cache } from 'cache-manager'
+import { ConfigService } from '@nestjs/config'
+import { getAppToken } from '@/helper/feishu/auth'
+import { BusinessException } from '@/common/exceptions/business.exception'
+import { messages } from '@/helper/feishu/message'
 
 @Injectable()
 export class FeishuService {
@@ -12,7 +11,7 @@ export class FeishuService {
 
   constructor(
     @Inject(CACHE_MANAGER) private catcheManager: Cache,
-    private configService: ConfigService,
+    private configService: ConfigService
   ) {
     this.APP_TOKEN_CACHE_KEY = this.configService.get('APP_TOKEN_CACHE_KEY')
   }
@@ -24,7 +23,11 @@ export class FeishuService {
       const response = await getAppToken()
       if (response.code === 0) {
         appToken = response.app_access_token
-        this.catcheManager.set(this.APP_TOKEN_CACHE_KEY, appToken, (response.expire - 60) * 1000)
+        this.catcheManager.set(
+          this.APP_TOKEN_CACHE_KEY,
+          appToken,
+          (response.expire - 60) * 1000
+        )
       } else {
         throw new BusinessException('获取飞书应用token失败')
       }

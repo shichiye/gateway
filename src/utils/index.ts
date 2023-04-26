@@ -1,7 +1,6 @@
 import { parse } from 'yaml'
-import path =  require('path')
-const fs = require('fs')
-
+import path = require('path');
+import fs = require('fs');
 
 // 获取项目运行环境
 export const getEnv = () => {
@@ -10,7 +9,7 @@ export const getEnv = () => {
 
 // 读取项目配置
 export const getConfig = (type?: string) => {
-  const environment =  getEnv()
+  const environment = getEnv()
   const yamlPath = path.join(process.cwd(), `./.config/.${environment}.yaml`)
   const file = fs.readFileSync(yamlPath, 'utf8')
   const config = parse(file)

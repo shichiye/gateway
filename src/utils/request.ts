@@ -1,7 +1,9 @@
 import axios, { Method } from 'axios'
 import { getConfig } from '@/utils'
 
-const { FEISHU_CONFIG: { FEISHU_URL } } = getConfig()
+const {
+  FEISHU_CONFIG: { FEISHU_URL }
+} = getConfig()
 
 /**
  * @description: 任意请求
@@ -16,7 +18,6 @@ const request = async ({ url, option = {} }) => {
     throw error
   }
 }
-
 
 interface IMethodV {
   url: string;
@@ -43,9 +44,9 @@ const methodV = async ({
 }: IMethodV): Promise<IRequest> => {
   let sendUrl = ''
   if (/^(http:\/\/|https:\/\/)/.test(url)) {
-    sendUrl = url;
+    sendUrl = url
   } else {
-    sendUrl = `${FEISHU_URL}${url}`;
+    sendUrl = `${FEISHU_URL}${url}`
   }
 
   try {
@@ -53,24 +54,24 @@ const methodV = async ({
       axios({
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          ...headers,
+          ...headers
         },
         url: sendUrl,
         method,
         params: query,
         data: {
-          ...params,
-        },
+          ...params
+        }
       })
         .then(({ data, status }) => {
-          resolve({ data, code: status });
+          resolve({ data, code: status })
         })
         .catch((error) => {
-          reject(error);
-        });
-    });
+          reject(error)
+        })
+    })
   } catch (error) {
-    throw error;
+    throw error
   }
 }
 
